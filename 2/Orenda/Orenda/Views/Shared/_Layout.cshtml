@@ -256,10 +256,15 @@
 
         //Voltar para Home
         function Home() {
-            location.reload();
-            return;
+            $.get('@Url.Action("Index", "Home")')
+                 .done(function (mensage) {
+                     $(".full_container").html(mensage);
+                 })
+             .fail(function (error) {
+                 console.log(error.responseText);
+             }
+             );
         }
-
         //Rotas para os relatorios
         function RelClient() {
             $.get('@Url.Action("Relatorio", "Cliente")')

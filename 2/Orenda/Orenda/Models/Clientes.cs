@@ -1,47 +1,32 @@
-﻿//using System;
-//using System.Collections.Generic;
-//using System.Linq;
-//using System.Web;
-
-//namespace Orenda.Models
-//{
-//    public class Produtos
-//    {
-//    }
-//}
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
+using System.Web;
 using System.Data.SqlClient;
+using System.Dynamic;
 
 
 namespace Orenda.Models
 {
-    public class Produtos
+    public class Clientes
     {
         [Key]
-        public int CodProd { get; set; }
-
-        [Required]
-        [StringLength(100)]
+        public int CodCliente { get; set; }
         public string Nome { get; set; }
-
-        public int Quantidade { get; set; }
-
-        public decimal Preco { get; set; }
-
-        public TimeSpan? Tempo { get; set; }
-        public DateTime Validade { get; set; }
+        public decimal CPF { get; set; }
+        public string Endereco { get; set; }
+        public string Cidade { get; set; }
+        public string Estado { get; set; }
+        public string Situacao { get; set; }
 
         private readonly static string _conn =
             @"Data Source=DESKTOP-3NC3AOG;Initial Catalog=Orenda;Integrated Security=SSPI;Persist Security Info=False;";
         private static SqlConnection myConnection = new SqlConnection(_conn);
         public bool Cadastrar()
         {
-            var sql = " insert into Produtos (prodNome, prodQtd, prodVal, prodPreco, prodTempo) values(" +
-                      $" '{this.Nome}' ,{this.Quantidade}, '{this.Validade}', '{this.Preco}', '{this.Tempo}')";
+            var sql = " insert into Clientes (cliNome, cliCPF, endereco, cidade, estado, ativo) values(" +
+                      $" '{this.Nome}' ,{this.CPF}, '{this.Endereco}', '{this.Cidade}', '{this.Estado}', '{this.Situacao}')";
             try
             {
                 using (var minhaConnection = new SqlConnection(_conn))
@@ -66,9 +51,9 @@ namespace Orenda.Models
             }
         }
 
-        public static List<Produtos> RecuperarList()
+        public static List<Clientes> RecuperarList()
         {
-            var ret = new List<Produtos>();
+            var ret = new List<Clientes>();
             using (var minhaConnection = new SqlConnection(_conn))
             {
                 minhaConnection.Open();
@@ -76,23 +61,25 @@ namespace Orenda.Models
                 {
                     cmd.Connection = minhaConnection;
                     cmd.CommandText = string.Format(
-                        "select * from Produtos order by cod_prod");
+                        "select * from Clientes order by cod_cli");
                     var reader = cmd.ExecuteReader();
                     while (reader.Read())
                     {
-                        ret.Add(new Produtos
+                        ret.Add(new Clientes
                         {
-                            CodProd = (int)reader["cod_prod"],
-                            Nome = (string)reader["prodNome"],
-                            Quantidade = (int)reader["prodQtd"],
-                            Validade = (DateTime)reader["prodVal"],
-                            Preco = (decimal)reader["prodPreco"],
-                            Tempo = (TimeSpan)reader["prodTempo"],
+                            CodCliente = (int)reader["cod_cli"],
+                            Nome = (string)reader["cliNome"],
+                            CPF = (decimal)reader["cliCPF"],
+                            Endereco = (string)reader["endereco"],
+                            Cidade = (string)reader["cidade"],
+                            Estado = (string)reader["estado"],
+                            Situacao = (string)reader["ativo"]
                         });
                     }
                 }
             }
+
             return ret;
-            }
         }
     }
+}
