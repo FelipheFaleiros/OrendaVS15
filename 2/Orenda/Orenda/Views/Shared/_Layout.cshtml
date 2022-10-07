@@ -1,0 +1,310 @@
+﻿<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <!-- basic -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- mobile metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <!-- site metas -->
+    <title>Orenda Produtos Naturais</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- site icon -->
+    <link rel="icon" href="~/images/logo/logo_icon-removebg.png" type="image/png" />
+    <link rel="shortcut icon" href="~/images/logo/logo_icon-removebg.png" type="image/x-icon" />
+    <!-- bootstrap css -->
+    <link rel="stylesheet" href="~/css/bootstrap.min.css" />
+    <!-- site css -->
+    <link rel="stylesheet" href="~/css/style.css" />
+    <!-- responsive css -->
+    <link rel="stylesheet" href="~/css/responsive.css" />
+    <!-- select bootstrap -->
+    <link rel="stylesheet" href="~/css/bootstrap-select.css" />
+    <!-- scrollbar css -->
+    <link rel="stylesheet" href="~/css/perfect-scrollbar.css" />
+    <!-- custom css -->
+    <link rel="stylesheet" href="~/css/custom.css" />
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" /> <!--classes bootstrap online-->
+
+</head>
+<body class="dashboard dashboard_1">
+    <div class="full_container">
+        <div class="inner_container">
+            <!-- Sidebar  -->
+            <nav id="sidebar">
+                <div class="sidebar_blog_1">
+                    <div class="sidebar-header">
+                        <div class="logo_section">
+                            <a href="#"><img class="logo_icon img-responsive" src="~/images/logo/logo_icon-removebg.png" alt="# " /></a>
+                        </div>
+                    </div>
+                    <div class="sidebar_user_info">
+                        <div class="icon_setting"></div>
+                        <div class="user_profle_side">
+                            <div class="user_img"><img class="img-responsive" src="~/images/layout_img/eduardo.jpg" alt="#" /></div>
+                            <div class="user_info">
+                                <h6>Eduardo D.</h6>
+                                <p><span class="online_animation"></span> Online</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="sidebar_blog_2">
+                    <h4>Geral</h4>
+                    <ul class="list-unstyled components">
+                        <li class="active">
+                            <a href="#dashboard" aria-expanded="false" id="TLink1" class="dropdown-toggle" onclick="toggle('dashboard', 'TLink1')"><i class="fa fa-dashboard yellow_color"></i> <span>Painel de Controle</span></a>
+                            <ul style="display: none;" id="dashboard">
+
+                                <li>
+                                    <a href="dashboard.html">> <span>Painel de controle estilo 1</span></a>
+                                </li>
+                                <li>
+                                    <a href="dashboard_2.html">> <span>Painel de controle estilo 2</span></a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="active">
+                            <a href="#element" id="TLink1" aria-expanded="false" class="dropdown-toggle" onclick="toggle('relatorio', 'TLink1')"><i class="fa fa-diamond purple_color"></i> <span>Relatórios</span></a>
+                            <ul style="display: none;" id="relatorio">
+                                <li><a onclick=RelClient()>> <span>Relatório de Clientes</span></a></li>
+                                <li><a href="relatoriovendas.html">> <span>Relatório de Vendas</span></a></li>
+                                <li><a href="relatorioestoque.html">> <span>Relatório de estoque</span></a></li>
+                                <li><a href="relatorioHoras.html">> <span>Relatório Horas de Trabalho</span></a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#apps" id="TLink1" aria-expanded="false" class="dropdown-toggle" onclick="toggle('apps', 'TLink1')"><i class="fa fa-object-group blue2_color"></i> <span>Aplicações</span></a>
+                            <ul style="display: none;" id="apps">
+                                <li><a href="email.html">> <span>Email</span></a></li>
+                                <li><a href="calendar.html">> <span>Calendario</span></a></li>
+                                <li><a href="media_gallery.html">> <span>Media Gallery</span></a></li>
+                            </ul>
+                        </li>
+                        <li><a href="price.html"><i class="fa fa-briefcase blue1_color"></i> <span>Pricing Tables</span></a></li>
+                        <li>
+                            <a href="contact.html">
+                                <i class="fa fa-paper-plane red_color"></i> <span>Contatos</span>
+                            </a>
+                        </li>
+                        <li class="active">
+                            <a href="#additional_page" id="TLink1" aria-expanded="false" class="dropdown-toggle" onclick="toggle('additional', 'TLink1')"><i class="fa fa-clone yellow_color"></i> <span>Cadastros</span></a>
+                            <ul style="display: none;" id="additional">
+                                <li>
+                                    <a onclick=FormCadastroClient()>> <span>Cadastrar Cliente</span></a>
+                                </li>
+                                <li>
+                                    <a onclick=FormCadastroProd()>> <span>Cadastrar Produto</span></a>
+                                </li>
+                                <li>
+                                    <a onclick=FormCadastroEstoq()>> <span>Cadastrar Estoque</span></a>
+                                </li>
+                                <li>
+                                    <a onclick=FormCadastroFornec()>> <span>Cadastrar Fornecedor</span></a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li><a href="map.html"><i class="fa fa-map purple_color2"></i> <span>Mapa</span></a></li>
+                        <li><a href="charts.html"><i class="fa fa-bar-chart-o green_color"></i> <span>Charts</span></a></li>
+                        <li><a href="settings.html"><i class="fa fa-cog yellow_color"></i> <span>Settings</span></a></li>
+                    </ul>
+                </div>
+            </nav>
+            <div id="content">
+                <div class="topbar">
+                    <nav class="navbar navbar-expand-lg navbar-light">
+                        <div class="full">
+                            <button type="button" id="sidebarCollapse" class="sidebar_toggle">
+                                <i class="fa fa-bars" aria-hidden="true"></i>
+                            </button>
+                            <div class="logo_section">
+                                <a><img class="img-responsive" src="~/images/logo/logoClaroSimples.png" onclick="Home(); return false;" alt="#" /></a>
+                            </div>
+                            <div class="right_topbar">
+                                <div class="icon_info">
+                                    <ul class="user_profile_dd">
+                                        <li>
+                                            <a class="dropdown-toggle" id="TLink1" data-toggle="dropdown" onclick="toggle('menu', 'TLink1')"><img class="img-responsive rounded-circle" src="~/images/layout_img/eduardo.jpg" alt="#" /><span class="name_user">Eduardo D.</span></a>
+                                            <div  style="display: none;" id="menu" >
+                                               <a class="dropdown-item" href="#"><span>Log Out</span> <i class="fa fa-sign-out"></i></a>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </nav>
+                </div>
+
+                <div class="container body-content">
+                    @RenderBody()
+                    <hr />
+                    <footer>
+                        <p>Designed by Phe. All rights reserved.</p>
+                    </footer>
+                </div>
+                @RenderSection("Scripts", false)
+
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <!-- jQuery -->
+    <script src="~/Scripts/jquery.min.js"></script>
+    <script src="~/Scripts/popper.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script> @*já veio*@
+    <!-- wow animation -->
+    <script src="~/Scripts/animate.js"></script>
+    <!-- select country -->
+    <script src="~/Scripts/bootstrap-select.js"></script>
+    <!-- owl carousel -->
+    <script src="~/Scripts/owl.carousel.js"></script>
+    <!-- chart js -->
+    <script src="~/Scripts/Chart.min.js"></script>
+    <script src="~/Scripts/Chart.bundle.min.js"></script>
+    <script src="~/Scripts/utils.js"></script>
+    <script src="~/Scripts/analyser.js"></script>
+    <!-- nice scrollbar -->
+    <script src="~/Scripts/perfect-scrollbar.min.js"></script>
+    <script>
+        var ps = new PerfectScrollbar('#sidebar');
+    </script>
+    <!-- custom js -->
+    <script src="~/Scripts/custom.js"></script>
+    <script src="~/Scripts/chart_custom_style1.js"></script>
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+
+    @*    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"></script>*@
+
+
+    <style type="text/css" media="screen">
+        #navbar li, #navbar2 li {
+            display: inline;
+            list-style-type: none;
+            padding-right: 20px;
+        }
+    </style>
+
+    <script type="text/javascript">
+        function toggle(id, id2) {
+            var n = document.getElementById(id);
+            if (n.style.display != 'none') {
+                n.style.display = 'none';
+                document.getElementById(id2).setAttribute('aria-expanded', 'true');
+            }
+            else {
+                n.style.display = '';
+                document.getElementById(id2).setAttribute('aria-expanded', 'false');
+            }
+        }
+
+        //rotas para os formularios
+        function FormCadastroClient() {
+            $.get('@Url.Action("Cadastro", "Cliente")')
+                .done(function(mensage) {
+                    $(".full_container").html(mensage);
+                })
+                .fail(function(error) {
+                    console.log(error.responseText);
+                }
+            );
+        }
+
+        function FormCadastroProd() {
+            $.get('@Url.Action("Cadastro", "Produto")')
+                .done(function(mensage) {
+                    $(".full_container").html(mensage);
+                })
+            .fail(function(error) {
+                    console.log(error.responseText);
+                }
+            );
+        }
+
+        function FormCadastroEstoq() {
+            $.get('@Url.Action("Cadastro", "Estoque")')
+                .done(function(mensage) {
+                    $(".full_container").html(mensage);
+                })
+            .fail(function(error) {
+                    console.log(error.responseText);
+                }
+            );
+        }
+
+        function FormCadastroFornec() {
+            $.get('@Url.Action("Cadastro", "Fornecedor")')
+                .done(function(mensage) {
+                    $(".full_container").html(mensage);
+                })
+            .fail(function(error) {
+                    console.log(error.responseText);
+                }
+            );
+        }
+
+        //Voltar para Home
+        function Home() {
+            location.reload();
+            return;
+        }
+
+        //Rotas para os relatorios
+        function RelClient() {
+            $.get('@Url.Action("Relatorio", "Cliente")')
+                .done(function(mensage) {
+                    $(".full_container").html(mensage);
+                })
+            .fail(function(error) {
+                    console.log(error.responseText);
+                }
+            );
+        }
+
+        function RelProd() {
+            $.get('@Url.Action("Relatorio", "Produto")')
+                .done(function(mensage) {
+                    $(".full_container").html(mensage);
+                })
+                .fail(function(error) {
+                        console.log(error.responseText);
+                    }
+                );
+        }
+
+        function RelEstoq() {
+            $.get('@Url.Action("Relatorio", "Estoque")')
+                .done(function(mensage) {
+                    $(".full_container").html(mensage);
+                })
+                .fail(function(error) {
+                        console.log(error.responseText);
+                    }
+                );
+        }
+
+        function RelFornec() {
+            $.get('@Url.Action("Relatorio", "Fornecedor")')
+                .done(function(mensage) {
+                    $(".full_container").html(mensage);
+                })
+                .fail(function(error) {
+                        console.log(error.responseText);
+                    }
+                );
+        }
+
+    </script>
+</body>
+</html>
