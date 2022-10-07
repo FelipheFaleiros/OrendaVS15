@@ -1,46 +1,34 @@
-﻿//using System;
-//using System.Collections.Generic;
-//using System.Linq;
-//using System.Web;
-
-//namespace Orenda.Models
-//{
-//    public class Produtos
-//    {
-//    }
-//}
-
-using System;
+﻿using System;
+using System.Data.SqlClient;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Data.SqlClient;
-
+using System.ComponentModel.DataAnnotations.Schema; //tirar
 
 namespace Orenda.Models
 {
-    public class Produtos
+    [Table("Estoque")] //se der pau tinhar isso 
+    public partial class Estoques
     {
         [Key]
-        public int CodProd { get; set; }
+        public int CodEst { get; set; }
 
         [Required]
         [StringLength(100)]
-        public string Nome { get; set; }
+        public string NomeMateriaPrima { get; set; }
 
         public int Quantidade { get; set; }
 
-        public decimal Preco { get; set; }
-
-        public TimeSpan Tempo { get; set; }
+        [Column(TypeName = "date")]
         public DateTime Validade { get; set; }
 
         private readonly static string _conn =
             @"Data Source=DESKTOP-3NC3AOG;Initial Catalog=Orenda;Integrated Security=SSPI;Persist Security Info=False;";
         private static SqlConnection myConnection = new SqlConnection(_conn);
+
         public bool Cadastrar()
         {
-            var sql = " insert into Produtos (prodNome, prodQtd, prodVal, prodPreco, prodTempo) values(" +
-                      $" '{this.Nome}' ,{this.Quantidade}, '{this.Validade}', '{this.Preco}', '{this.Tempo}')";
+            var sql = " insert into  Estoque (mp, mpQtd, mpVal) values(" +
+                      $" '{this.NomeMateriaPrima}' ,{this.Quantidade}, '{this.Validade}')";
             try
             {
                 using (var minhaConnection = new SqlConnection(_conn))
@@ -65,9 +53,9 @@ namespace Orenda.Models
             }
         }
 
-        public static List<Produtos> RecuperarList()
+        public static List<Estoques> RecuperarList()
         {
-            var ret = new List<Produtos>();
+            var ret = new List<Estoques>();
             using (var minhaConnection = new SqlConnection(_conn))
             {
                 minhaConnection.Open();
@@ -75,23 +63,23 @@ namespace Orenda.Models
                 {
                     cmd.Connection = minhaConnection;
                     cmd.CommandText = string.Format(
-                        "select * from Produtos order by cod_prod");
+                        "select * from Estoque order by cod_est");
                     var reader = cmd.ExecuteReader();
                     while (reader.Read())
                     {
-                        ret.Add(new Produtos
+                        ret.Add(new Estoques
                         {
-                            CodProd = (int)reader["cod_prod"],
-                            Nome = (string)reader["prodNome"],
-                            Quantidade = (int)reader["prodQtd"],
-                            Validade = (DateTime)reader["prodVal"],
-                            Preco = (decimal)reader["prodPreco"],
-                            Tempo = (TimeSpan)reader["prodTempo"],
+                            CodEst = (int)reader["cod_est"],
+                            NomeMateriaPrima = (string)reader["mp"],
+                            Quantidade = (int)reader["mpQtd"],
+                            Validade = (DateTime)reader["mpVal"]
+                            
                         });
                     }
                 }
             }
+
             return ret;
-            }
         }
     }
+}
