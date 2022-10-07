@@ -1,0 +1,66 @@
+﻿@model IEnumerable<Orenda.Models.Produtos>
+
+
+<div class="midde_cont">
+    <div class="container-fluid">
+        <div class="row column_title">
+            <div class="col-md-12">
+                <div class="page_title">
+                    <h2>Relatórios</h2>
+                </div>
+            </div>
+        </div>
+        <!-- row -->
+        <div class="row">
+            <!-- table section -->
+            <!-- table section -->
+            <div class="col-md-12">
+                <div class="white_shd full margin_bottom_30">
+                    <div class="full graph_head">
+                        <div class="heading1 margin_0">
+                            <h2>Relatório dos Produtos</h2>
+                        </div>
+                    </div>
+                    <div class="table_section padding_infor_info">
+                        <div class="table-responsive-sm">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Produto</th>
+                                        <th>Quantidade</th>
+                                        <th>Validade</th>
+                                        <th>Preço</th>
+                                        <th>Tempo de Preparo</th>
+                                        <th>Editar</th>
+                                        <th>Excluir</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td>@item.CodProd</td>
+                                            <td>@item.Nome</td>
+                                            <td>@item.Quantidade</td>
+                                            <td>@item.Validade</td>
+                                            <td>@item.Preco</td>
+                                            <td>@item.Tempo</td>
+                                            <td>
+                                                <button id="btn_alterar" class="btn btn-success btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Editar"><i class="fa fa-edit"></i></button>
+                                            </td>
+                                            <td>
+                                                <button id="btn_excluir" class="btn btn-danger btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Deletar"><i class="fa fa-trash"></i></button>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

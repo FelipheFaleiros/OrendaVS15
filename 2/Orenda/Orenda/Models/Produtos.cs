@@ -22,7 +22,7 @@ namespace Orenda.Models
     public class Produtos
     {
         [Key]
-        public int cod_prod { get; set; }
+        public int CodProd { get; set; }
 
         [Required]
         [StringLength(100)]
@@ -67,5 +67,34 @@ namespace Orenda.Models
                 return (false);
             }
         }
+
+        public static List<Produtos> RecuperarList()
+        {
+            var ret = new List<Produtos>();
+            using (var minhaConnection = new SqlConnection(_conn))
+            {
+                minhaConnection.Open();
+                using (var cmd = new SqlCommand())
+                {
+                    cmd.Connection = minhaConnection;
+                    cmd.CommandText = string.Format(
+                        "select * from Produtos order by cod_prod");
+                    var reader = cmd.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        ret.Add(new Produtos
+                        {
+                            CodProd = (int)reader["cod_prod"],
+                            Nome = (string)reader["prodNome"],
+                            Quantidade = (int)reader["prodQtd"],
+                            Validade = (DateTime)reader["prodVal"],
+                            Preco = (decimal)reader["prodPreco"],
+                            Tempo = (TimeSpan)reader["prodTempo"],
+                        });
+                    }
+                }
+            }
+            return ret;
+            }
+        }
     }
-}

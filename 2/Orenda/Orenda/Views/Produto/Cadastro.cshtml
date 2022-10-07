@@ -132,7 +132,7 @@
                                                 <input class="form-control" id="preco" onkeypress="mascaraDinheiro(this,mreais)" placeholder="1000.00" )>*@
                                                 @Html.LabelFor(model => model.Preco,"Preço R$:", htmlAttributes: new { @class = "label" })
                                                 <div class="label">
-                                                    @Html.EditorFor(model => model.Preco, new { htmlAttributes = new { @class = "form-control", @autocomplete = "off", @onkeypress = "mascaraDinheiro(this,mreais)", @placeholder = "1000.00" } })
+                                                    @Html.EditorFor(model => model.Preco, new { htmlAttributes = new { @class = "form-control", @type = "decimal", @autocomplete = "off", @onkeypress = "mascaraDinheiro(this,mreais)", @placeholder = "1000.00" } })
                                                     @Html.ValidationMessageFor(model => model.Preco, "", new { @class = "text-danger" })
                                                 </div>
                                             </div>
@@ -187,14 +187,14 @@
     function CriarCadastroProduto() {
         debugger;
         var cadastrar = {
-            nome: $("#nome").val(),
-            quantidade: $("#quantidade").val(),
-            validade: $("#validade").val(),
-            preco: $("#preco").val().replace(".", "."),
-            tempo: $("#tempo").val(),
+            nome: $("#Nome").val(),
+            quantidade: $("#Quantidade").val(),
+            validade: $("#Validade").val(),
+            preco: $("#Preco").val().replace(".", "."),
+            tempo: $("#Tempo").val(),
         }
         console.log(cadastrar);
-        cadastrar.preco = parseFloat($("#preco").val().replace(",", "."));
+        //cadastrar.preco = parseFloat($("#preco").val().replace(",", "."));
         $.post('@Url.Action("Cadastrar", "Produto")', cadastrar)
 
             .done(function(mensage) {

@@ -21,5 +21,12 @@ namespace Orenda.Controllers
             cadastrar.Cadastrar();
             return Content("TOP");
         }
+
+        public ActionResult Relatorio()
+        {
+         
+                return View(Produtos.RecuperarList());
+           
+        }
     }
 }

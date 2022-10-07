@@ -13,5 +13,26 @@ namespace Orenda.Controllers
         {
             return View();
         }
+
+        [HttpPost]
+        public ActionResult Cadastrar(Clientes cadastrar)
+        {
+            cadastrar.Cadastrar();
+            return Content("TOP");
+        }
+
+        public ActionResult Relatorio()
+        {
+            if (Session["Autorizado"] != null)
+            {
+                return View(Clientes.RecuperarList());
+            }
+            else
+            {
+                Response.Redirect("/Login/Index");
+                return null;
+            }
+        }
+
     }
 }
