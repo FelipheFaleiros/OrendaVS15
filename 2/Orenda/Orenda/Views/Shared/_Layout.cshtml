@@ -77,16 +77,16 @@
                             <ul style="display: none;" id="relatorio">
                                 <li><a onclick=RelClient()>> <span>Relatório de Clientes</span></a></li>
                                 <li><a onclick=RelProd()>> <span>Relatório de Produtos</span></a></li>
-                                <li><a onclick=RelEst()>> <span>Relatório de Estoque</span></a></li>
+                                <li><a onclick=RelEstoq()>> <span>Relatório de Estoque</span></a></li>
                                 <li><a onclick=RelFornec()>> <span>Relatório de Fornecedores</span></a></li>
                             </ul>
                         </li>
                         <li>
                             <a href="#apps" id="TLink1" aria-expanded="false" class="dropdown-toggle" onclick="toggle('apps', 'TLink1')"><i class="fa fa-object-group blue2_color"></i> <span>Aplicações</span></a>
                             <ul style="display: none;" id="apps">
-                                <li><a href="email.html">> <span>Email</span></a></li>
-                                <li><a href="calendar.html">> <span>Calendario</span></a></li>
-                                <li><a href="media_gallery.html">> <span>Media Gallery</span></a></li>
+                                <li><a href="#">> <span>Email</span></a></li>
+                                <li><a href="#">> <span>Calendario</span></a></li>
+                                <li><a href="#">> <span>Media Gallery</span></a></li>
                             </ul>
                         </li>
                         <li><a href="price.html"><i class="fa fa-briefcase blue1_color"></i> <span>Pricing Tables</span></a></li>
@@ -289,6 +289,7 @@
         }
 
         function RelEstoq() {
+            debugger;
             $.get('@Url.Action("Relatorio", "Estoque")')
                 .done(function(mensage) {
                     $(".full_container").html(mensage);

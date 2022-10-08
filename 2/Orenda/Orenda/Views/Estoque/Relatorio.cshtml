@@ -1,5 +1,5 @@
 ﻿
-@model IEnumerable<Orenda.Models.Clientes>
+@model IEnumerable<Orenda.Models.Estoques>
 
 <div class="midde_cont">
     <div class="container-fluid">
@@ -27,12 +27,9 @@
                                 <thead>
                                     <tr>
                                         <th>#</th>
-                                        <th>Cliente</th>
-                                        <th>CPF</th>
-                                        <th>Endereço</th>
-                                        <th>Cidade</th>
-                                        <th>Estado</th>
-                                        <th>Ativo</th>
+                                        <th>Nome da matéria prima</th>
+                                        <th>Quantidade</th>
+                                        <th>Validade</th>
                                         <th>Editar</th>
                                         <th>Excluir</th>
 
@@ -42,13 +39,10 @@
                                     @foreach (var item in Model)
                                     {
                                         <tr>
-                                            <td>@item.CodCliente</td>
-                                            <td>@item.Nome</td>
-                                            <td>@item.CPF</td>
-                                            <td>@item.Endereco</td>
-                                            <td>@item.Cidade</td>
-                                            <td>@item.Estado</td>
-                                            <td>@item.Situacao</td>
+                                            <td style="text-align:center;">@item.CodEst</td>
+                                            <td style="text-align:center;">@item.NomeMateriaPrima</td>
+                                            <td style="text-align:center;">@item.Quantidade</td>
+                                            <td style="text-align:center;">@item.Validade</td>
                                             <td>
                                                 <button id="btn_alterar" class="btn btn-success btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Editar"><i class="fa fa-edit"></i></button>
                                             </td>
