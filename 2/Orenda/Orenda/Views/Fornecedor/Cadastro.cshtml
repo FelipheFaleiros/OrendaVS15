@@ -1,0 +1,93 @@
+﻿@model Orenda.Models.Fornecedores
+
+<div class="midde_cont">
+    <div class="container-fluid">
+        <div class="row column_title">
+            <div class="col-md-12">
+                <div class="page_title">
+                    <h2>Cadastro de Fornecedor</h2>
+                </div>
+            </div>
+        </div>
+        <!-- row -->
+        <div class="row column1">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+                <div class="white_shd full margin_bottom_30">
+                    <div class="full graph_head">
+                        <div class="heading1 margin_0">
+                            <h2>Fornecedores</h2>
+                        </div>
+                    </div>
+                    <section class="ftco-section ftco-no-pb ftco-no-pt">
+                        <div class="row">
+                            <div class="col-md-12 order-md-last">
+                                <div class="login-wrap p-4 p-md-5">
+                                    <h3 class="mb-4">Insira os dados para cadastro</h3>
+                                    <form action="#" class="signup-form">
+                                        <div class="form-group">
+                                            @Html.LabelFor(model => model.Nome, "Nome do Fornecedor", htmlAttributes: new { @class = "control-label col-md-4" })
+                                            <div class="col-md-10">
+                                                @Html.EditorFor(model => model.Nome, new { htmlAttributes = new { @class = "form-control", @placeholder = "Razão Social Completa" } })
+                                                @Html.ValidationMessageFor(model => model.Nome, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group">                                            
+                                            @Html.LabelFor(model => model.CNPJ, htmlAttributes: new { @class = "control-label col-md-2" })
+                                            <div class="col-md-10">
+                                                @Html.EditorFor(model => model.CNPJ, new { htmlAttributes = new { @class = "form-control", @placeholder = "XX.XXX.XXX/XXXX-XX", @maxlength = "18", @autocomplete = "off" } })
+                                                @Html.ValidationMessageFor(model => model.CNPJ, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                             @Html.LabelFor(model => model.Endereco, htmlAttributes: new { @class = "control-label col-md-2" })
+                                            <div class="col-md-10">
+                                                @Html.EditorFor(model => model.Endereco, new { htmlAttributes = new { @class = "form-control", @placeholder = "Rua/Av...., número" } })
+                                                @Html.ValidationMessageFor(model => model.Endereco, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                        <div class="form-row">                                           
+                                            <div class="form-group col-md-5 offset-md-3">                                                
+                                                @Html.LabelFor(model => model.Tempo,"Tempo medio de entrega", htmlAttributes: new { @class = "col-md-10" })
+                                                <div class="col-md-10">
+                                                    @Html.EditorFor(model => model.Tempo, new { htmlAttributes = new { @class = "form-control", @style = "text-align:center;", @type = "time" } })
+                                                    @Html.ValidationMessageFor(model => model.Tempo, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                        </div><br>
+                                        <p class="offset-md-3">Todos os dados estão corretos?</p>
+                                        <div class="form-group d-flex justify-content-end mt-4">
+                                            <button type="button" onclick="CriarCadastroFornec()" class="btn btn-primary"><span class="fa fa-paper-plane"></span></button>
+                                        </div>
+                                    </form>
+
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function CriarCadastroFornec() {
+
+         var cadastrar = {
+             nome: $("#Nome").val(),
+             cnpj: $("#CNPJ").val(),
+             endereco: $("#Endereco").val(),
+             tempo: $("#Tempo").val()
+         }
+        $.post('@Url.Action("Cadastrar", "Fornecedor")', cadastrar)
+
+             .done(function(mensage) {
+                 alert("Cadastro Realizado")
+             })
+             .fail(function(error) {
+                 console.log(error.responseText);
+             });
+     }
+
+</script>
