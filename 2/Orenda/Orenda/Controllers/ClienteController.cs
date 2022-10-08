@@ -25,5 +25,12 @@ namespace Orenda.Controllers
             
         }
 
+        public ActionResult Deletar(int id)
+        {
+            Clientes.Deletar(id);
+            return Content("TOP");
+
+        }
+
     }
 }

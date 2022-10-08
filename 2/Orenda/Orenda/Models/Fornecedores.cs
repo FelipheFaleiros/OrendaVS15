@@ -29,7 +29,7 @@ namespace Orenda.Models
 
         public bool Deletar()
         {
-            var sql = " delete * from Clientes where cod_cli = ' + @CodFornecedor '";
+            var sql = " delete * from Fornecedores where cod_cli = {0}";
             try
             {
                 using (var minhaConnection = new SqlConnection(_conn))

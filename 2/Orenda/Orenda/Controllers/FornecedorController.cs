@@ -25,7 +25,6 @@ namespace Orenda.Controllers
         public ActionResult Relatorio()
         {
             return View(Fornecedores.RecuperarList());
-
         }
 
         //public ActionResult Delet(int cod)

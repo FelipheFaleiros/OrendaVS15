@@ -23,6 +23,33 @@ namespace Orenda.Models
         private readonly static string _conn =
             @"Data Source=DESKTOP-3NC3AOG;Initial Catalog=Orenda;Integrated Security=SSPI;Persist Security Info=False;";
         private static SqlConnection myConnection = new SqlConnection(_conn);
+        public static bool Deletar(int id)
+        {
+            var sql = " delete from Clientes Where cod_cli = "+ id;
+            try
+            {
+                using (var minhaConnection = new SqlConnection(_conn))
+                {
+                    {
+                        minhaConnection.Open();
+                        using (var cmd = new SqlCommand(sql, minhaConnection))
+                        {
+                            using (var dr = cmd.ExecuteReader())
+                            {
+                                return true;
+                            }
+                        }
+                    }
+                }
+
+            }
+            catch (Exception)
+            {
+                myConnection.Close();
+                return (false);
+            }
+        }
+
         public bool Cadastrar()
         {
             var sql = " insert into Clientes (cliNome, cliCPF, endereco, cidade, estado, ativo) values(" +

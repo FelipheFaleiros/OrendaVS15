@@ -399,6 +399,20 @@
                     console.log(error.responseText);
                 });
         }
+
+        //deletar
+        function DeletarCliente(id) {
+            $.get('@Url.Action("Deletar", "Cliente")', {
+                id:id
+            }).done(function (mensage) {
+                alert("Cliente Removido");
+                RelClient();
+            })
+            .fail(function (erro){
+                console.log(error.responseText)
+            });
+        }
+
     </script>
 </body>
 </html>
