@@ -31,8 +31,9 @@ namespace Orenda.Models
 
         public int Quantidade { get; set; }
 
-        [Column(TypeName = "date")]
         public DateTime Validade { get; set; }
+        //public DateTime prodVal { get; set; }
+
 
         public decimal Preco { get; set; }
 

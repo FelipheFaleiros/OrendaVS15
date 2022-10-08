@@ -18,8 +18,20 @@ namespace Orenda.Models
 
         public int Quantidade { get; set; }
 
-        [Column(TypeName = "date")]
-        public DateTime Validade { get; set; }
+        ////[Column(TypeName = "date")]
+        //[DataType(DataType.Date)]
+        //[DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:yyyy/MM/dd}")]
+        public DateTime Validade {
+            get
+            {
+                return DateTime.Now;
+            }
+            set
+            {
+                Validade = DateTime.Now;
+            }
+        }
 
         private readonly static string _conn =
             @"Data Source=DESKTOP-3NC3AOG;Initial Catalog=Orenda;Integrated Security=SSPI;Persist Security Info=False;";
