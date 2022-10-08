@@ -70,24 +70,3 @@
         </div>
     </div>
 </div>
-
-<script>
-    function CriarCadastroFornec() {
-        debugger;
-         var cadastrar = {
-             nome: $("#Nome").val(),
-             cnpj: $("#CNPJ").val(),
-             endereco: $("#Endereco").val(),
-             tempo: $("#Tempo").val()
-         }
-        $.post('@Url.Action("Cadastrar", "Fornecedor")', cadastrar)
-
-             .done(function(mensage) {
-                 alert("Cadastro Realizado")
-             })
-             .fail(function(error) {
-                 console.log(error.responseText);
-             });
-     }
-
-</script>
