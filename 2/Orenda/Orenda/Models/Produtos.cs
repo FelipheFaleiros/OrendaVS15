@@ -13,11 +13,13 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.SqlClient;
 
 
 namespace Orenda.Models
 {
+    [Table("Produtos")]
     public class Produtos
     {
         [Key]
@@ -29,10 +31,12 @@ namespace Orenda.Models
 
         public int Quantidade { get; set; }
 
+        [Column(TypeName = "date")]
+        public DateTime Validade { get; set; }
+
         public decimal Preco { get; set; }
 
-        public TimeSpan Tempo { get; set; }
-        public DateTime Validade { get; set; }
+        public TimeSpan? Tempo { get; set; }
 
         private readonly static string _conn =
             @"Data Source=DESKTOP-3NC3AOG;Initial Catalog=Orenda;Integrated Security=SSPI;Persist Security Info=False;";
