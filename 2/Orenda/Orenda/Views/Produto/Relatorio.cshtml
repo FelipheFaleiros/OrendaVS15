@@ -26,14 +26,14 @@
                             <table class="table">
                                 <thead>
                                     <tr>
-                                        <th>#</th>
-                                        <th>Produto</th>
-                                        <th>Quantidade</th>
-                                        <th>Validade</th>
-                                        <th>Preço</th>
-                                        <th>Tempo de Preparo</th>
-                                        <th>Editar</th>
-                                        <th>Excluir</th>
+                                        <th style="text-align:center;">#</th>
+                                        <th style="text-align:center;">Produto</th>
+                                        <th style="text-align:center;">Quantidade</th>
+                                        <th style="text-align:center;">Validade</th>
+                                        <th style="text-align:center;">Preço</th>
+                                        <th style="text-align:center;">Tempo de Preparo</th>
+                                        <th style="text-align:center;">Editar</th>
+                                        <th style="text-align:center;">Excluir</th>
 
                                     </tr>
                                 </thead>
@@ -41,16 +41,16 @@
                                     @foreach (var item in Model)
                                     {
                                         <tr>
-                                            <td>@item.CodProd</td>
-                                            <td>@item.Nome</td>
-                                            <td>@item.Quantidade</td>
-                                            <td>@item.Validade</td>
-                                            <td>@item.Preco</td>
-                                            <td>@item.Tempo</td>
-                                            <td>
+                                            <td style="text-align:center;">@item.CodProd</td>
+                                            <td style="text-align:center;">@item.Nome</td>
+                                            <td style="text-align:center;">@item.Quantidade</td>
+                                            <td style="text-align:center;">@item.Validade</td>
+                                            <td style="text-align:center;">@item.Preco</td>
+                                            <td style="text-align:center;">@item.Tempo</td>
+                                            <td style="text-align:center;">
                                                 <button id="btn_alterar" class="btn btn-success btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Editar"><i class="fa fa-edit"></i></button>
                                             </td>
-                                            <td>
+                                            <td style="text-align:center;">
                                                 <button id="btn_excluir" class="btn btn-danger btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Deletar"><i class="fa fa-trash"></i></button>
                                             </td>
                                         </tr>
