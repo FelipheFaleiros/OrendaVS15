@@ -24,7 +24,7 @@ namespace Orenda.Controllers
 
         public ActionResult Relatorio()
         {
-            return View(Clientes.RecuperarList());
+            return View(Fornecedores.RecuperarList());
 
         }
 
