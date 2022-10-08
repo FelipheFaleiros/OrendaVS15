@@ -21,8 +21,14 @@ namespace Orenda.Models
         public string Situacao { get; set; }
 
         private readonly static string _conn =
-            @"Data Source=DESKTOP-3NC3AOG;Initial Catalog=Orenda;Integrated Security=SSPI;Persist Security Info=False;";
+            @"Data Source=(LocalDb)\MSSQLLocalDB;Initial Catalog=Orenda;Integrated Security=SSPI;Persist Security Info=False;";
         private static SqlConnection myConnection = new SqlConnection(_conn);
+
+        public static bool delete(int id)
+        {
+            return true;
+        }
+
         public bool Cadastrar()
         {
             var sql = " insert into Clientes (cliNome, cliCPF, endereco, cidade, estado, ativo) values(" +

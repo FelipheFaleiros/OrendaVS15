@@ -24,7 +24,7 @@ namespace Orenda.Models
 
         public TimeSpan? Tempo { get; set; }
         private readonly static string _conn =
-                   @"Data Source=DESKTOP-3NC3AOG;Initial Catalog=Orenda;Integrated Security=SSPI;Persist Security Info=False;";
+                   @"Data Source=(LocalDb)\MSSQLLocalDB;Initial Catalog=Orenda;Integrated Security=SSPI;Persist Security Info=False;";
         private static SqlConnection myConnection = new SqlConnection(_conn);
 
         public bool Deletar()

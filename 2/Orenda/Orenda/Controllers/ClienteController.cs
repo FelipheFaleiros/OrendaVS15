@@ -25,5 +25,15 @@ namespace Orenda.Controllers
             
         }
 
+        public ActionResult delete( int id)
+        {
+            //    var cliente = new Clientes();
+            //    cliente.delete(id);
+
+            Clientes.delete(id);
+            return View();
+
+        }
+
     }
 }

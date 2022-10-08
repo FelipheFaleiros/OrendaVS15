@@ -21,7 +21,19 @@ namespace Orenda.Controllers
         public ActionResult Relatorio()
         {
             return View(Produtos.RecuperarList());
+        }
 
+        [HttpGet]
+        public ActionResult GetDados(int id)
+        {
+            return View("Cadastro", Produtos.GetProdutos(id));
+        }
+
+        [HttpPost]
+        public ActionResult Put(Produtos cadastrar)
+        {
+            cadastrar.Put();
+            return Content("TOP");
         }
 
     }

@@ -25,5 +25,19 @@ namespace Orenda.Controllers
             return View(Estoques.RecuperarList());
 
         }
+
+        [HttpGet]
+        public ActionResult GetDados(int id)
+        {
+            return View("Cadastro", Estoques.GetProdutos(id));
+        }
+
+        [HttpPost]
+        public ActionResult Put(Estoques cadastrar)
+        {
+            cadastrar.Put();
+            return Content("TOP");
+        }
+
     }
 }

@@ -48,7 +48,7 @@
                                             <td style="text-align:center;">@item.Preco</td>
                                             <td style="text-align:center;">@item.Tempo</td>
                                             <td style="text-align:center;">
-                                                <button id="btn_alterar" class="btn btn-success btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Editar"><i class="fa fa-edit"></i></button>
+                                                <button id="btn_alterar" onclick="alterar(@item.CodProd)" class="btn btn-success btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Editar"><i class="fa fa-edit"></i></button>
                                             </td>
                                             <td style="text-align:center;">
                                                 <button id="btn_excluir" class="btn btn-danger btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Deletar"><i class="fa fa-trash"></i></button>
@@ -64,3 +64,17 @@
         </div>
     </div>
 </div>
+<script>
+
+    function alterar(id) {
+
+        $.get('@Url.Action("GetDados", "Produto")', {
+            id: id
+        }).done(function (mensage) {
+                $(".full_container").html(mensage);
+        }).fail(function (error) {
+            console.log(error.responseText);
+        });
+
+    };
+</script>

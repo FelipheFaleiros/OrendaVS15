@@ -344,61 +344,103 @@
                  });
         }
 
-           function CriarCadastroFornec() {
-        debugger;
-         var cadastrar = {
-             nome: $("#Nome").val(),
-             cnpj: $("#CNPJ").val(),
-             endereco: $("#Endereco").val(),
-             tempo: $("#Tempo").val()
-         }
-        $.post('@Url.Action("Cadastrar", "Fornecedor")', cadastrar)
+        function CriarCadastroFornec() {
+             var cadastrar = {
+                 nome: $("#Nome").val(),
+                 cnpj: $("#CNPJ").val(),
+                 endereco: $("#Endereco").val(),
+                 tempo: $("#Tempo").val()
+             }
 
-             .done(function(mensage) {
-                 alert("Cadastro Realizado")
-             })
-             .fail(function(error) {
-                 console.log(error.responseText);
-             });
-     }
+            $.post('@Url.Action("Cadastrar", "Fornecedor")', cadastrar)
+
+                 .done(function(mensage) {
+                     alert("Cadastro Realizado")
+                 })
+                 .fail(function(error) {
+                     console.log(error.responseText);
+                 });
+         }
 
         function CriarCadastroProduto() {
-            debugger;
-            var cadastrar = {
-                nome: $("#Nome").val(),
-                quantidade: $("#Quantidade").val(),
-                validade: $("#Validade").val(),
-                preco: $("#Preco").val().replace(".", "."),
-                tempo: $("#Tempo").val(),
-            }
-            //console.log(cadastrar);
-            //cadastrar.preco = parseFloat($("#preco").val().replace(",", "."));
-            $.post('@Url.Action("Cadastrar", "Produto")', cadastrar)
+            if ($("#Cod_Prod").val()) {
 
-                .done(function (mensage) {
-                    alert("Cadastro Realizado")
-                })
-                .fail(function (error) {
-                    console.log(error.responseText);
-                });
+                var alterar = {
+                    CodProd: $("#Cod_Prod").val(),
+                    nome: $("#Nome").val(),
+                    quantidade: $("#Quantidade").val(),
+                    validade: $("#Validade").val(),
+                    preco: $("#Preco").val().replace(".", "."),
+                    tempo: $("#Tempo").val(),
+                }
+
+                $.post('@Url.Action("Put", "Produto")', alterar)
+                    .done(function (mensage) {
+                        alert("Alteração Realizada");
+                        RelProd();
+                    }).fail(function (error) {
+                        console.log(error.responseText);
+                    });
+
+            } else {
+
+                var cadastrar = {
+                    nome: $("#Nome").val(),
+                    quantidade: $("#Quantidade").val(),
+                    validade: $("#Validade").val(),
+                    preco: $("#Preco").val().replace(".", "."),
+                    tempo: $("#Tempo").val(),
+                }
+
+                $.post('@Url.Action("Cadastrar", "Produto")', cadastrar)
+                    .done(function (mensage) {
+                        alert("Cadastro Realizado")
+                    }).fail(function (error) {
+                        console.log(error.responseText);
+                    });
+            }
+
         }
 
         function CriarCadastroEstoque() {
-            debugger;
-            var cadastrar = {
-                nomeMateriaPrima: $("#NomeMateriaPrima").val(),
-                quantidade: $("#Quantidade").val(),
-                validade: $("#Validade").val(),
-            }
-            $.post('@Url.Action("Cadastrar", "Estoque")', cadastrar)
+            if ($("#CodEst").val()) {
 
-                .done(function (mensage) {
-                    alert("Cadastro Realizado")
-                })
-                .fail(function (error) {
-                    console.log(error.responseText);
-                });
+                var alterar = {
+                    CodEst: $("#CodEst").val(),
+                    nomeMateriaPrima: $("#NomeMateriaPrima").val(),
+                    quantidade: $("#Quantidade").val(),
+                    validade: $("#Validade").val(),
+                }
+
+                $.post('@Url.Action("Put", "Estoque")', alterar)
+                    .done(function (mensage) {
+                        alert("Alteração Realizada");
+                        RelEstoq();
+                    }).fail(function (error) {
+                        console.log(error.responseText);
+                    });
+
+            } else {
+                var cadastrar = {
+                    nomeMateriaPrima: $("#NomeMateriaPrima").val(),
+                    quantidade: $("#Quantidade").val(),
+                    validade: $("#Validade").val(),
+                }
+
+                $.post('@Url.Action("Cadastrar", "Estoque")', cadastrar)
+
+                    .done(function (mensage) {
+                        alert("Cadastro Realizado")
+                    })
+                    .fail(function (error) {
+                        console.log(error.responseText);
+                    });
+                }
         }
+
+
+
+
     </script>
 </body>
 </html>
