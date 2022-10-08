@@ -25,8 +25,6 @@
                                     <h3 class="mb-4">Insira os dados para cadastro</h3>
                                     <form action="#" class="signup-form">
                                         <div class="form-group">
-                                            @*<label class="label" for="name">Nome do Produto</label>
-                                            <input type="text" id="nome" class="form-control" placeholder="produto x">*@
                                             @Html.LabelFor(model => model.Nome, htmlAttributes: new { @class = "label" })
                                             <div class="label"> 
                                                 @Html.EditorFor(model => model.Nome, new { htmlAttributes = new { @class = "form-control", @placeholder = "Nome do Produto" } })
@@ -36,8 +34,6 @@
                                         </div>
                                         <div class="form-row">
                                             <div class="form-group col-md-5">
-                                                @*<label class="label" for="Registro">Quantidade</label>
-                                                <input type="number" id="Quantidade" class="form-control" placeholder="unidade qtd/Kg">*@
                                                 @Html.LabelFor(model => model.Quantidade, htmlAttributes: new { @class = "label" })
                                                 <div class="label">
                                                     @Html.EditorFor(model => model.Quantidade, new { htmlAttributes = new { @class = "form-control", @type = "number", @placeholder = "Unidade Qtd/Kg" } })
@@ -45,11 +41,8 @@
                                                 </div>
                                             </div>
                                             <div class="form-group col-md-5 offset-md-2">
-                                                @*<label class="label" for="Endereço">Validade</label>
-                                                <input type="date" id="validade" class="form-control">*@
                                                 @Html.LabelFor(model => model.Validade, htmlAttributes: new { @class = "label" })
                                                 <div class="label">
-                                                    @*<input class="date form-control" type="text" autocomplete="off" id="Validade" placeholder = "dd-mm-aaaa" DateTime.Today.ToString ("dd-MM-aaaa") >*@
                                                     @Html.EditorFor(model => model.Validade, new { htmlAttributes = new { @class = "form-control", @type="date" } })
                                                     @Html.ValidationMessageFor(model => model.Validade, "", new { @class = "text-danger" })
                                                 </div>
@@ -57,8 +50,6 @@
                                         </div>
                                         <div class="form-row">
                                             <div class="form-group col-md-5">
-                                                @*<label class="label" for="Cidade">Preço R$:</label>
-                                                <input class="form-control" id="preco" onkeypress="mascaraDinheiro(this,mreais)" placeholder="1000.00" )>*@
                                                 @Html.LabelFor(model => model.Preco,"Preço R$:", htmlAttributes: new { @class = "label" })
                                                 <div class="label">
                                                     @Html.EditorFor(model => model.Preco, new { htmlAttributes = new { @class = "form-control", @type = "decimal", @autocomplete = "off", @onkeypress = "mascaraDinheiro(this,mreais)", @placeholder = "1000.00" } })
@@ -66,19 +57,16 @@
                                                 </div>
                                             </div>
                                             <div class="form-group col-md-5 offset-md-2">
-                                                @*<label class="label" for="Estado">Tempo de Produção</label>
-                                                <input type="text" step='1' min="00:00:00" max="20:00:00" id="tempo" class="form-control">*@
                                                 @Html.LabelFor(model => model.Tempo, htmlAttributes: new { @class = "control-label col-md-2" })
                                                 <div class="label">
                                                     @Html.EditorFor(model => model.Tempo, new { htmlAttributes = new { @class = "form-control", @type = "time", @min = "00:00:00", @max = "23:59:59" } })
-                                                    @*<input id = "appt-time " type="datetime-local" timeObject.max = hh:mm:ss.ms min="00:00:00" max="23:59:59"/>*@
                                                     @Html.ValidationMessageFor(model => model.Tempo, "", new { @class = "text-danger" })
                                                 </div>
                                             </div>
                                         </div><br>
                                         <p class="text-center">Todos os dados estão corretos?</p>
                                         <div class="form-group d-flex justify-content-end mt-4">
-                                            <button type="submit" onclick="CriarCadastroProduto()" class="btn btn-primary submit"><span class="fa fa-paper-plane"></span></button>
+                                            <button type="button" onclick="CriarCadastroProduto()" class="btn btn-primary"><span class="fa fa-paper-plane"></span></button>
                                         </div>
 
                                         
@@ -113,26 +101,7 @@
             return v;
 
     }
-    function CriarCadastroProduto() {
-        debugger;
-        var cadastrar = {
-            nome: $("#Nome").val(),
-            quantidade: $("#Quantidade").val(),
-            validade: $("#Validade").val(),
-            preco: $("#Preco").val().replace(".", "."),
-            tempo: $("#Tempo").val(),
-        }
-        console.log(cadastrar);
-        //cadastrar.preco = parseFloat($("#preco").val().replace(",", "."));
-        $.post('@Url.Action("Cadastrar", "Produto")', cadastrar)
-
-            .done(function(mensage) {
-                alert("Cadastro Realizado")
-            })
-            .fail(function(error) {
-                console.log(error.responseText);
-            });
-    }
+  
 
 
 </script>

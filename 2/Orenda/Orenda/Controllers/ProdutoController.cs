@@ -5,7 +5,7 @@ namespace Orenda.Controllers
 {
     public class ProdutoController : Controller
     {
-        // GET: Produto
+        [HttpGet]
         public ActionResult Cadastro()
         {
             return View();
@@ -20,9 +20,9 @@ namespace Orenda.Controllers
 
         public ActionResult Relatorio()
         {
-         
-                return View(Produtos.RecuperarList());
-           
+            return View(Produtos.RecuperarList());
+
         }
+
     }
 }

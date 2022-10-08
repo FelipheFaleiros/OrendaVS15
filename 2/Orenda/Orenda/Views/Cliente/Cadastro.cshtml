@@ -65,29 +65,3 @@
     </div>
 </div>
 
-<script>
-
-
-    function CriarCadastroCliente() {
-         var cadastrar = {
-             nome: $("#nome").val(),
-             cpf: $("#cpf").val(),
-             endereco: $("#endereco").val(),
-             cidade: $("#cidade").val(),
-             estado: $("#estado").val(),
-             situacao: $("#situacao").val()
-         }
-         @*$.post('@Url.Action("Cadastro")', cadastrar)*@
-         @*$.get('@Url.Action("Cadastro", "Cliente")')*@
-
-        $.post('@Url.Action("Cadastrar", "Cliente")', cadastrar)
-
-             .done(function(mensage) {
-                 alert("Cadastro Realizado")
-             })
-             .fail(function(error) {
-                 console.log(error.responseText);
-             });
-     }
-
-</script>

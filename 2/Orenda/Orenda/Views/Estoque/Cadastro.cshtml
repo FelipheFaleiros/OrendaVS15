@@ -69,22 +69,3 @@
         </div>     
     </div>
 </div>
-
-<script>
-    function CriarCadastroEstoque() {
-        debugger;
-        var cadastrar = {
-            nomeMateriaPrima: $("#NomeMateriaPrima").val(),
-            quantidade: $("#Quantidade").val(),
-            validade: $("#Validade").val(),          
-        }
-        $.post('@Url.Action("Cadastrar", "Estoque")', cadastrar)
-
-            .done(function (mensage) {
-                alert("Cadastro Realizado")
-            })
-            .fail(function (error) {
-                console.log(error.responseText);
-            });
-    }
-</script>

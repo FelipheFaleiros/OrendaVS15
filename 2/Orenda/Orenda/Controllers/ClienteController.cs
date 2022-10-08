@@ -6,6 +6,7 @@ namespace Orenda.Controllers
     public class ClienteController : Controller
     {
         // GET: Cliente
+        [HttpGet]        
         public ActionResult Cadastro()
         {
             return View();

@@ -323,6 +323,82 @@
                 );
         }
 
+        //Cadastros
+        function CriarCadastroCliente() {
+            debugger;
+            var cadastrar = {
+                nome: $("#nome").val(),
+                cpf: $("#cpf").val(),
+                endereco: $("#endereco").val(),
+                cidade: $("#cidade").val(),
+                estado: $("#estado").val(),
+                situacao: $("#situacao").val()
+            }
+            $.post('@Url.Action("Cadastrar", "Cliente")', cadastrar)
+
+                 .done(function (mensage) {
+                     alert("Cadastro Realizado")
+                 })
+                 .fail(function (error) {
+                     console.log(error.responseText);
+                 });
+        }
+
+           function CriarCadastroFornec() {
+        debugger;
+         var cadastrar = {
+             nome: $("#Nome").val(),
+             cnpj: $("#CNPJ").val(),
+             endereco: $("#Endereco").val(),
+             tempo: $("#Tempo").val()
+         }
+        $.post('@Url.Action("Cadastrar", "Fornecedor")', cadastrar)
+
+             .done(function(mensage) {
+                 alert("Cadastro Realizado")
+             })
+             .fail(function(error) {
+                 console.log(error.responseText);
+             });
+     }
+
+        function CriarCadastroProduto() {
+            debugger;
+            var cadastrar = {
+                nome: $("#Nome").val(),
+                quantidade: $("#Quantidade").val(),
+                validade: $("#Validade").val(),
+                preco: $("#Preco").val().replace(".", "."),
+                tempo: $("#Tempo").val(),
+            }
+            //console.log(cadastrar);
+            //cadastrar.preco = parseFloat($("#preco").val().replace(",", "."));
+            $.post('@Url.Action("Cadastrar", "Produto")', cadastrar)
+
+                .done(function (mensage) {
+                    alert("Cadastro Realizado")
+                })
+                .fail(function (error) {
+                    console.log(error.responseText);
+                });
+        }
+
+        function CriarCadastroEstoque() {
+            debugger;
+            var cadastrar = {
+                nomeMateriaPrima: $("#NomeMateriaPrima").val(),
+                quantidade: $("#Quantidade").val(),
+                validade: $("#Validade").val(),
+            }
+            $.post('@Url.Action("Cadastrar", "Estoque")', cadastrar)
+
+                .done(function (mensage) {
+                    alert("Cadastro Realizado")
+                })
+                .fail(function (error) {
+                    console.log(error.responseText);
+                });
+        }
     </script>
 </body>
 </html>
