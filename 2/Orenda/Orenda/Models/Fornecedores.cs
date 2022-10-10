@@ -27,9 +27,9 @@ namespace Orenda.Models
                    @"Data Source=DESKTOP-3NC3AOG;Initial Catalog=Orenda;Integrated Security=SSPI;Persist Security Info=False;";
         private static SqlConnection myConnection = new SqlConnection(_conn);
 
-        public bool Deletar()
+        public static bool Deletar(int id)
         {
-            var sql = " delete * from Fornecedores where cod_cli = {0}";
+            var sql = " delete from Fornecedores where cod_For = "+ id;
             try
             {
                 using (var minhaConnection = new SqlConnection(_conn))

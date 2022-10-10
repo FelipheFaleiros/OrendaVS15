@@ -21,15 +21,13 @@ namespace Orenda.Controllers
 
         public ActionResult Relatorio()
         {
-            return View(Clientes.RecuperarList());
-            
+            return View(Clientes.RecuperarList());            
         }
 
         public ActionResult Deletar(int id)
         {
             Clientes.Deletar(id);
             return Content("TOP");
-
         }
 
     }

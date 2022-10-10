@@ -32,8 +32,6 @@ namespace Orenda.Models
         public int Quantidade { get; set; }
 
         public DateTime Validade { get; set; }
-        //public DateTime prodVal { get; set; }
-
 
         public decimal Preco { get; set; }
 
@@ -98,5 +96,33 @@ namespace Orenda.Models
             }
             return ret;
             }
+
+        public static bool Deletar(int id)
+        {
+            var sql = " delete from Produtos Where cod_prod = " + id;
+            try
+            {
+                using (var minhaConnection = new SqlConnection(_conn))
+                {
+                    {
+                        minhaConnection.Open();
+                        using (var cmd = new SqlCommand(sql, minhaConnection))
+                        {
+                            using (var dr = cmd.ExecuteReader())
+                            {
+                                return true;
+                            }
+                        }
+                    }
+                }
+
+            }
+            catch (Exception)
+            {
+                myConnection.Close();
+                return (false);
+            }
         }
+
     }
+}

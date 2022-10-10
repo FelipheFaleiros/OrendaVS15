@@ -18,20 +18,7 @@ namespace Orenda.Models
 
         public int Quantidade { get; set; }
 
-        ////[Column(TypeName = "date")]
-        //[DataType(DataType.Date)]
-        //[DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
-        [DisplayFormat(DataFormatString = "{0:yyyy/MM/dd}")]
-        public DateTime Validade {
-            get
-            {
-                return DateTime.Now;
-            }
-            set
-            {
-                Validade = DateTime.Now;
-            }
-        }
+        public DateTime Validade { get; set;}
 
         private readonly static string _conn =
             @"Data Source=DESKTOP-3NC3AOG;Initial Catalog=Orenda;Integrated Security=SSPI;Persist Security Info=False;";
@@ -93,5 +80,33 @@ namespace Orenda.Models
 
             return ret;
         }
+
+        public static bool Deletar(int id)
+        {
+            var sql = " delete from Estoque Where cod_est = " + id;
+            try
+            {
+                using (var minhaConnection = new SqlConnection(_conn))
+                {
+                    {
+                        minhaConnection.Open();
+                        using (var cmd = new SqlCommand(sql, minhaConnection))
+                        {
+                            using (var dr = cmd.ExecuteReader())
+                            {
+                                return true;
+                            }
+                        }
+                    }
+                }
+
+            }
+            catch (Exception)
+            {
+                myConnection.Close();
+                return (false);
+            }
+        }
+
     }
 }

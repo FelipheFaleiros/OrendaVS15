@@ -26,11 +26,11 @@ namespace Orenda.Controllers
         {
             return View(Fornecedores.RecuperarList());
         }
-
-        //public ActionResult Delet(int cod)
-        //{
-        //    Deletar(cod);
-        //    return Content("TOP")
-        //}
+        
+        public ActionResult Deletar(int id)
+        {
+            Fornecedores.Deletar(id);
+            return Content("TOP");
+        }
     }
 }

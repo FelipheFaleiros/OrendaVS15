@@ -402,6 +402,7 @@
 
         //deletar
         function DeletarCliente(id) {
+            debugger;
             $.get('@Url.Action("Deletar", "Cliente")', {
                 id:id
             }).done(function (mensage) {
@@ -412,7 +413,44 @@
                 console.log(error.responseText)
             });
         }
+                
+        function DeletarFornecedor(id) {
+            debugger;
+            $.get('@Url.Action("Deletar", "Fornecedor")', {
+                id: id
+            }).done(function (mensage) {
+                alert("Fornecedor Removido");
+                RelFornec();
+            })
+            .fail(function (erro) {
+                console.log(error.responseText)
+            });
+        }
 
+        function DeletarProduto(id) {
+            debugger;
+            $.get('@Url.Action("Deletar", "Produto")', {
+                id: id
+            }).done(function (mensage) {
+                alert("Produto Removido");
+                RelProd();
+            })
+            .fail(function (erro) {
+                console.log(error.responseText)
+            });
+        }
+
+        function DeletarEstoque(id) {
+            $.get('@Url.Action("Deletar", "Estoque")', {
+                id: id
+            }).done(function (mensage) {
+                alert("Estoque Removido");
+                RelEstoq();
+            })
+            .fail(function (erro) {
+                console.log(error.responseText)
+            });
+        }
     </script>
 </body>
 </html>

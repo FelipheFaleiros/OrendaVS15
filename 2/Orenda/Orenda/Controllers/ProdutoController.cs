@@ -21,8 +21,12 @@ namespace Orenda.Controllers
         public ActionResult Relatorio()
         {
             return View(Produtos.RecuperarList());
-
         }
 
+        public ActionResult Deletar(int id)
+        {
+            Produtos.Deletar(id);
+            return Content("TOP");
+        }
     }
 }
