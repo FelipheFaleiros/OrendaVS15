@@ -30,5 +30,18 @@ namespace Orenda.Controllers
             Estoques.Deletar(id);
             return Content("TOP");
         }
+
+        [HttpGet]
+        public ActionResult GetDados(int id)
+        {
+            return View("Edicao", Estoques.GetProdutos(id));
+        }
+
+        [HttpPost]
+        public ActionResult Put(Estoques cadastrar)
+        {
+            cadastrar.Put();
+            return Content("TOP");
+        }
     }
 }

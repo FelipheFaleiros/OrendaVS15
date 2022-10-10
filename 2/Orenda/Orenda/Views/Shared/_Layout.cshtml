@@ -385,19 +385,35 @@
 
         function CriarCadastroEstoque() {
             debugger;
-            var cadastrar = {
-                nomeMateriaPrima: $("#NomeMateriaPrima").val(),
-                quantidade: $("#Quantidade").val(),
-                validade: $("#Validade").val(),
-            }
-            $.post('@Url.Action("Cadastrar", "Estoque")', cadastrar)
+            if ($("#CodEst").val()) {
+                var alterar = {
+                    CodEst: $("#CodEst").val(),
+                    nomeMateriaPrima: $("#NomeMateriaPrima").val(),
+                    quantidade: $("#Quantidade").val(),
+                    validade: $("#Validade").val(),
+                }
+                $.post('@Url.Action("Put", "Estoque")', alterar)
+                    .done(function (mensage) {
+                        alert("Alteração Realizada");
+                        RelEstoq();
+                    }).fail(function (error) {
+                        console.log(error.responseText);
+                    });
+            } else {
+                var cadastrar = {
+                    nomeMateriaPrima: $("#NomeMateriaPrima").val(),
+                    quantidade: $("#Quantidade").val(),
+                    validade: $("#Validade").val(),
+                }
+                $.post('@Url.Action("Cadastrar", "Estoque")', cadastrar)
 
-                .done(function (mensage) {
-                    alert("Cadastro Realizado")
-                })
-                .fail(function (error) {
-                    console.log(error.responseText);
-                });
+                    .done(function (mensage) {
+                        alert("Cadastro Realizado")
+                    })
+                    .fail(function (error) {
+                        console.log(error.responseText);
+                    });
+            }
         }
 
         //deletar
@@ -413,7 +429,7 @@
                 console.log(error.responseText)
             });
         }
-                
+
         function DeletarFornecedor(id) {
             debugger;
             $.get('@Url.Action("Deletar", "Fornecedor")', {
@@ -451,6 +467,18 @@
                 console.log(error.responseText)
             });
         }
+
+        //Alteração
+        function AlterarEstoque(id) {
+            debugger;
+            $.get('@Url.Action("GetDados", "Estoque")', {
+                id: id
+            }).done(function (mensage) {
+                $(".full_container").html(mensage);
+            }).fail(function (error) {
+                console.log(error.responseText);
+            });
+        };
     </script>
 </body>
 </html>
