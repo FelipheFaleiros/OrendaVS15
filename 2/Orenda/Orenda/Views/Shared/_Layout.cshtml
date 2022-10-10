@@ -364,23 +364,43 @@
 
         function CriarCadastroProduto() {
             debugger;
-            var cadastrar = {
-                nome: $("#Nome").val(),
-                quantidade: $("#Quantidade").val(),
-                validade: $("#Validade").val(),
-                preco: $("#Preco").val(),
-                tempo: $("#Tempo").val(),
-            }
-            //console.log(cadastrar);
-            //cadastrar.preco = parseFloat($("#preco").val().replace(",", "."));
-            $.post('@Url.Action("Cadastrar", "Produto")', cadastrar)
+            if ($("#CodProd").val()) {
+                var cadastrar = {
+                    codProd: $('#CodProd').val(),
+                    nome: $("#Nome").val(),
+                    quantidade: $("#Quantidade").val(),
+                    validade: $("#Validade").val(),
+                    preco: $("#Preco").val(),
+                    tempo: $("#Tempo").val(),
+                }
+                //cadastrar.preco = parseFloat($("#preco").val().replace(",", "."));
+                $.post('@Url.Action("Put", "Produto")', cadastrar)
 
-                .done(function (mensage) {
-                    alert("Cadastro Realizado")
-                })
-                .fail(function (error) {
-                    console.log(error.responseText);
-                });
+                    .done(function (mensage) {
+                        alert("Alteração Realizado");
+                        RelProd();
+                    })
+                    .fail(function (error) {
+                        console.log(error.responseText);
+                    });
+            } else {
+                var cadastrar = {
+                    nome: $("#Nome").val(),
+                    quantidade: $("#Quantidade").val(),
+                    validade: $("#Validade").val(),
+                    preco: $("#Preco").val(),
+                    tempo: $("#Tempo").val(),
+                }
+                $.post('@Url.Action("Cadastrar", "Produto")', cadastrar)
+
+                    .done(function (mensage) {
+                        alert("Cadastro Realizado")
+                        FormCadastroProd()
+                    })
+                    .fail(function (error) {
+                        console.log(error.responseText);
+                    });
+            }
         }
 
         function CriarCadastroEstoque() {
@@ -408,7 +428,8 @@
                 $.post('@Url.Action("Cadastrar", "Estoque")', cadastrar)
 
                     .done(function (mensage) {
-                        alert("Cadastro Realizado")
+                        alert("Cadastro Realizado");
+                        FormCadastroEstoq();
                     })
                     .fail(function (error) {
                         console.log(error.responseText);
@@ -479,6 +500,37 @@
                 console.log(error.responseText);
             });
         };
+
+        function AlterarProduto(id) {
+            debugger;
+            $.get('@Url.Action("GetDados", "Produto")', {
+                id: id
+            }).done(function (mensage) {
+                $(".full_container").html(mensage);
+            }).fail(function (error) {
+                console.log(error.responseText);
+            });
+        };
+
+
+        //Macara Dinheiro
+        function mascaraDinheiro(o, f) {
+            v_obj = o
+            v_fun = f
+            setTimeout("execmascara()", 1)
+        }
+
+        function execmascara() {
+            v_obj.value = v_fun(v_obj.value)
+        }
+
+        function mreais(v) {
+            v = v.replace(/\D/g, "") //Remove tudo o que não é dígito
+            v = v.replace(/(\d{2})$/, ",$1") //Coloca a virgula
+            //v = v.replace(/(\d+)(\d{3},\d{2})$/g, "$1.$2") //Coloca o primeiro ponto
+            return v;
+        }
+
     </script>
 </body>
 </html>

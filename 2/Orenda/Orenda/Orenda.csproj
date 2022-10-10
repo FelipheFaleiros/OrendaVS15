@@ -318,6 +318,7 @@
     <Content Include="Views\Fornecedor\Cadastro.cshtml" />
     <Content Include="Views\Fornecedor\Relatorio.cshtml" />
     <Content Include="Views\Estoque\Edicao.cshtml" />
+    <Content Include="Views\Produto\Edicao.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

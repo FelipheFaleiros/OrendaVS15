@@ -28,7 +28,7 @@ namespace Orenda.Models
         public bool Cadastrar()
         {
             var sql = " insert into  Estoque (mp, mpQtd, mpVal) values(" +
-                      $" '{this.NomeMateriaPrima}' ,{this.Quantidade}, '{this.Validade}')";
+                      $" '{this.NomeMateriaPrima}' ,{this.Quantidade}, '{this.Validade.ToString("yyyy/MM/dd", new CultureInfo("en-US"))}')";
             try
             {
                 using (var minhaConnection = new SqlConnection(_conn))

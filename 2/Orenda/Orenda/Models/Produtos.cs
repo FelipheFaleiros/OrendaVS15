@@ -15,7 +15,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.SqlClient;
-
+using System.Globalization;
 
 namespace Orenda.Models
 {
@@ -118,6 +118,68 @@ namespace Orenda.Models
 
             }
             catch (Exception)
+            {
+                myConnection.Close();
+                return (false);
+            }
+        }
+        public static Produtos GetProdutos(int id)
+        {
+            using (var minhaConnection = new SqlConnection(_conn))
+            {
+                minhaConnection.Open();
+                using (var cmd = new SqlCommand())
+                {
+                    cmd.Connection = minhaConnection;
+                    cmd.CommandText = string.Format($"select * from Produtos where cod_prod = {id}");
+                    var reader = cmd.ExecuteReader();
+                    if (reader.Read())
+                    {
+                        return new Produtos
+                        {
+                            CodProd = (int)reader["cod_prod"],
+                            Nome = (string)reader["prodNome"],
+                            Quantidade = (int)reader["prodQtd"],
+                            Validade = (DateTime)reader["prodVal"],
+                            Preco = (decimal)reader["prodPreco"],
+                            Tempo = (TimeSpan)reader["prodTempo"],
+                        };
+                    }
+                    else
+                    {
+                        return null;
+                    }
+                }
+            }
+        }
+
+        public bool Put()
+        {
+            var sql = "UPDATE Produtos " +
+                    $"SET prodNome = '{this.Nome}', " +
+                    $"prodQtd = {this.Quantidade}, " +
+                    $"prodVal = '{this.Validade.ToString("yyyy/MM/dd", new CultureInfo("en-US"))}', " +
+                    $"prodPreco = '{this.Preco}', " +
+                    $"prodTempo = '{this.Tempo}', " +
+                    $"WHERE cod_prod = {this.CodProd}";
+            try
+            {
+                using (var minhaConnection = new SqlConnection(_conn))
+                {
+                    {
+                        minhaConnection.Open();
+                        using (var cmd = new SqlCommand(sql, minhaConnection))
+                        {
+                            using (var dr = cmd.ExecuteReader())
+                            {
+                                return true;
+                            }
+                        }
+                    }
+                }
+
+            }
+            catch (Exception ex)
             {
                 myConnection.Close();
                 return (false);
