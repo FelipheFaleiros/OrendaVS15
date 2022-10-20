@@ -22,7 +22,7 @@
                         <div class="row">
                             <div class="col-md-12 order-md-last">
                                 <div class="login-wrap p-4 p-md-5">
-                                    <h3 class="mb-4">Insira os dados para cadastro</h3>
+                                    <h3 class="mb-4">Edite os dados necessários do Produto</h3>
                                     <form action="#" class="signup-form">
                                         <div class="form-group">
                                              <input type="hidden" value="@Model.CodProd" id="CodProd" name="CodProd" />
@@ -40,9 +40,7 @@
                                                     @Html.ValidationMessageFor(model => model.Quantidade, "", new { @class = "text-danger" })
                                                 </div>
                                             </div>
-                                            <div class="form-group col-md-5 offset-md-2">
-                                                @*<label class="label" for="Endereço">Validade</label>
-                                                <input type="date" class="form-control">*@
+                                            <div class="form-group col-md-5 offset-md-2">                                            
                                                 @Html.LabelFor(model => model.Validade, htmlAttributes: new { @class = "control-label col-md-2" })
                                                 <div>
                                                     @Html.EditorFor(model => model.Validade, "{0:yyyy/MM/dd}", new { htmlAttributes = new { @class = "form-control", @type = "date" } })
@@ -81,26 +79,3 @@
         </div>
     </div>
 </div>
-
-
-
-@*<script>
-
-    function mascaraDinheiro(o, f) {
-        v_obj = o
-        v_fun = f
-        setTimeout("execmascara()", 1)
-    }
-
-    function execmascara() {
-        v_obj.value = v_fun(v_obj.value)
-    }
-
-    function mreais(v) {
-        v = v.replace(/\D/g, "") //Remove tudo o que não é dígito
-        v = v.replace(/(\d{2})$/, ",$1") //Coloca a virgula
-        //v = v.replace(/(\d+)(\d{3},\d{2})$/g, "$1.$2") //Coloca o primeiro ponto
-            return v;
-    }  
-    
-</script>*@

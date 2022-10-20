@@ -43,7 +43,7 @@ namespace Orenda.Models
         public bool Cadastrar()
         {
             var sql = " insert into Produtos (prodNome, prodQtd, prodVal, prodPreco, prodTempo) values(" +
-                      $" '{this.Nome}' ,{this.Quantidade}, '{this.Validade}', '{this.Preco}', '{this.Tempo}')";
+                      $" '{this.Nome}' ,{this.Quantidade}, '{this.Validade.ToString("yyyy/MM/dd", new CultureInfo("en-US"))}', '{this.Preco}', '{this.Tempo}')";
             try
             {
                 using (var minhaConnection = new SqlConnection(_conn))
@@ -160,7 +160,7 @@ namespace Orenda.Models
                     $"prodQtd = {this.Quantidade}, " +
                     $"prodVal = '{this.Validade.ToString("yyyy/MM/dd", new CultureInfo("en-US"))}', " +
                     $"prodPreco = '{this.Preco}', " +
-                    $"prodTempo = '{this.Tempo}', " +
+                    $"prodTempo = '{this.Tempo}' " +
                     $"WHERE cod_prod = {this.CodProd}";
             try
             {

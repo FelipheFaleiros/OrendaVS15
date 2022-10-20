@@ -34,7 +34,7 @@ namespace Orenda.Controllers
         [HttpGet]
         public ActionResult GetDados(int id)
         {
-            return View("Edicao", Estoques.GetProdutos(id));
+            return View("Edicao", Estoques.GetEstoques(id));
         }
 
         [HttpPost]

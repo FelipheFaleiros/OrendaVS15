@@ -326,22 +326,44 @@
         //Cadastros
         function CriarCadastroCliente() {
             debugger;
-            var cadastrar = {
-                nome: $("#nome").val(),
-                cpf: $("#cpf").val(),
-                endereco: $("#endereco").val(),
-                cidade: $("#cidade").val(),
-                estado: $("#estado").val(),
-                situacao: $("#situacao").val()
-            }
-            $.post('@Url.Action("Cadastrar", "Cliente")', cadastrar)
+            if ($("#CodCliente").val()) {
+                var cadastrar = {
+                    codCliente:$("#CodCliente").val(),
+                    nome: $("#Nome").val(),
+                    cpf: $("#CPF").val(),
+                    endereco: $("#Endereco").val(),
+                    cidade: $("#Cidade").val(),
+                    estado: $("#Estado").val(),
+                    situacao: $("#Situacao").val()
+                }
+                $.post('@Url.Action("Put", "Cliente")', cadastrar)
 
-                 .done(function (mensage) {
-                     alert("Cadastro Realizado")
-                 })
-                 .fail(function (error) {
-                     console.log(error.responseText);
-                 });
+                     .done(function (mensage) {
+                         alert("Alteração Realizado")
+                         RelClient();
+                     })
+                     .fail(function (error) {
+                         console.log(error.responseText);
+                     });
+            } else {
+                var cadastrar = {
+                    nome: $("#Nome").val(),
+                    cpf: $("#CPF").val(),
+                    endereco: $("#Endereco").val(),
+                    cidade: $("#Cidade").val(),
+                    estado: $("#Estado").val(),
+                    situacao: $("#Situacao").val()
+                }
+                $.post('@Url.Action("Cadastrar", "Cliente")', cadastrar)
+
+                     .done(function (mensage) {
+                         alert("Cadastro Realizado")
+                         FormCadastroClient()
+                     })
+                     .fail(function (error) {
+                         console.log(error.responseText);
+                     });
+            }
         }
 
            function CriarCadastroFornec() {
@@ -512,6 +534,16 @@
             });
         };
 
+        function AlterarCliente(id) {
+            debugger;
+            $.get('@Url.Action("GetDados", "Cliente")', {
+                id: id
+            }).done(function (mensage) {
+                $(".full_container").html(mensage);
+            }).fail(function (error) {
+                console.log(error.responseText);
+            });
+        };
 
         //Macara Dinheiro
         function mascaraDinheiro(o, f) {

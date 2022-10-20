@@ -108,7 +108,7 @@ namespace Orenda.Models
                 return (false);
             }
         }
-        public static Estoques GetProdutos(int id)
+        public static Estoques GetEstoques(int id)
         {
             using (var minhaConnection = new SqlConnection(_conn))
             {

@@ -108,5 +108,70 @@ namespace Orenda.Models
 
             return ret;
         }
+        public static Clientes GetClientes(int id)
+        {
+            using (var minhaConnection = new SqlConnection(_conn))
+            {
+                minhaConnection.Open();
+                using (var cmd = new SqlCommand())
+                {
+                    cmd.Connection = minhaConnection;
+                    cmd.CommandText = string.Format($"select * from Clientes where cod_cli = {id}");
+                    var reader = cmd.ExecuteReader();
+                    if (reader.Read())
+                    {
+                        return new Clientes
+                        {
+                            CodCliente = (int)reader["cod_cli"],
+                            Nome = (string)reader["cliNome"],
+                            CPF = (decimal)reader["cliCPF"],
+                            Endereco = (string)reader["endereco"],
+                            Cidade = (string)reader["cidade"],
+                            Estado = (string)reader["estado"],
+                            Situacao = (string)reader["ativo"]
+                        };
+                    }
+                    else
+                    {
+                        return null;
+                    }
+                }
+            }
+        }
+
+        public bool Put()
+        {
+            var sql = "UPDATE Clientes " +
+                    $"SET cliNome= '{this.Nome}', " +
+                    $"cliCPF= {this.CPF}, " +
+                    $"endereco = '{this.Endereco}', " +
+                    $"cidade = '{this.Cidade}', " +
+                    $"estado = '{this.Estado}', " +
+                    $"ativo= '{this.Situacao}' " +
+                    $"WHERE cod_cli = {this.CodCliente}";
+            try
+            {
+                using (var minhaConnection = new SqlConnection(_conn))
+                {
+                    {
+                        minhaConnection.Open();
+                        using (var cmd = new SqlCommand(sql, minhaConnection))
+                        {
+                            using (var dr = cmd.ExecuteReader())
+                            {
+                                return true;
+                            }
+                        }
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                myConnection.Close();
+                return (false);
+            }
+        }
+
     }
 }

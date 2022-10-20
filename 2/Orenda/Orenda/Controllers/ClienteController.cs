@@ -30,5 +30,17 @@ namespace Orenda.Controllers
             return Content("TOP");
         }
 
+        [HttpGet]
+        public ActionResult GetDados(int id)
+        {
+            return View("Edicao", Clientes.GetClientes(id));
+        }
+
+        [HttpPost]
+        public ActionResult Put(Clientes cadastrar)
+        {
+            cadastrar.Put();
+            return Content("TOP");
+        }
     }
 }

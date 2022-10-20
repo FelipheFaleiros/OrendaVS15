@@ -1,0 +1,76 @@
+﻿@model Orenda.Models.Clientes
+
+<div class="midde_cont">
+    <div class="container-fluid">
+        <div class="row column_title">
+            <div class="col-md-12">
+                <div class="page_title">
+                    <h2>Edição do Cliente</h2>
+                </div>
+            </div>
+        </div>
+        <!-- row -->
+        <div class="row column1">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+                <div class="white_shd full margin_bottom_30">
+                    <div class="full graph_head">
+                        <div class="heading1 margin_0">
+                            <h2>Cliente</h2>
+                        </div>
+                    </div>
+                    <section class="ftco-section ftco-no-pb ftco-no-pt">
+                        <div class="row">
+                            <div class="col-md-12 order-md-last">
+                                <div class="login-wrap p-4 p-md-5">
+                                    <h3 class="mb-4">Edite os dados necessários do Cliente</h3>
+                                    <form class="signup-form">
+                                        <div class="form-gryoup">
+                                            <input type="hidden" value="@Model.CodCliente" id="CodCliente" name="CodCliente" />
+                                            @*<label class="label">Nome Completo</label>
+                                            <input type="text" id="nome" class="form-control" placeholder="John Doe">
+                                        </div>*@
+                                            @Html.LabelFor(model => model.Nome, htmlAttributes: new { @class = "control-label col-md-2" })
+                                            <div>
+                                            @Html.EditorFor(model => model.Nome, new { htmlAttributes = new { @class = "form-control", @placeholder = "Nome do Cliente" } })
+                                            @Html.ValidationMessageFor(model => model.Nome, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="label">CPF</label>
+                                            <input type="text" autocomplete="off" maxlength="14" id="cpf" class="form-control" placeholder="XXX.XXX.XXX-XX" onkeyup="mascaraCPF()">
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="label">Endereço</label>
+                                            <input type="text" id="endereco" class="form-control" placeholder="Rua/Av...., número">
+                                        </div>
+                                        <div class="form-row">
+                                            <div class="form-group col-md-7">
+                                                <label class="label">Cidade</label>
+                                                <input type="text" id="cidade" class="form-control" placeholder="Cidade">
+                                            </div>
+                                            <div class="form-group col-md-4 offset-md-1">
+                                                <label class="label">Estado</label>
+                                                <input type="text" id="estado" class="form-control" placeholder="Estado">
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-md-4 offset-md-4">
+                                            <label class="label">Situação de Atividade</label>
+                                            <input type="text" id="situacao" class="form-control-center" placeholder="Sim/Não">
+                                        </div>
+                                        <br>
+                                        <p class="text-center">Todos os dados estão corretos?</p>
+                                        <div class="form-group d-flex justify-content-end mt-4">
+                                            <button type="button" onclick="CriarCadastroCliente()" class="btn btn-primary"><span class="fa fa-paper-plane"></span> </button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
