@@ -77,5 +77,6 @@ D:\Library\Projetos\Orenda15\2\OrendaVS15\2\Orenda\Orenda\bin\Microsoft.Owin.Sec
 D:\Library\Projetos\Orenda15\2\OrendaVS15\2\Orenda\Orenda\bin\Microsoft.Owin.Security.Google.xml
 D:\Library\Projetos\Orenda15\2\OrendaVS15\2\Orenda\Orenda\bin\Microsoft.Owin.Security.Twitter.xml
 D:\Library\Projetos\Orenda15\2\OrendaVS15\2\Orenda\Orenda\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+D:\Library\Projetos\Orenda15\2\OrendaVS15\2\Orenda\Orenda\obj\Debug\Orenda.csprojResolveAssemblyReference.cache
 D:\Library\Projetos\Orenda15\2\OrendaVS15\2\Orenda\Orenda\obj\Debug\Orenda.dll
 D:\Library\Projetos\Orenda15\2\OrendaVS15\2\Orenda\Orenda\obj\Debug\Orenda.pdb

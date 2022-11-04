@@ -366,23 +366,44 @@
             }
         }
 
-           function CriarCadastroFornec() {
-        debugger;
-         var cadastrar = {
-             nome: $("#Nome").val(),
-             cnpj: $("#CNPJ").val(),
-             endereco: $("#Endereco").val(),
-             tempo: $("#Tempo").val()
-         }
-        $.post('@Url.Action("Cadastrar", "Fornecedor")', cadastrar)
+        function CriarCadastroFornec() {
+            debugger;
+            if ($("#CodFornecedor").val()) {
+                var cadastrar = {
+                    codProd: $('CodFornecedor').val(),
+                    nome: $("#Nome").val(),
+                    cnpj: $("#CNPJ").val(),
+                    endereco: $("#Endereco").val(),
+                    tempo: $("#Tempo").val()
+                }
+                $.post('@Url.Action("Put", "Fornecedor")', cadastrar)
 
-             .done(function(mensage) {
-                 alert("Cadastro Realizado")
-             })
-             .fail(function(error) {
-                 console.log(error.responseText);
-             });
-     }
+          .done(function(mensage) {
+              alert("Alteração Realizada")
+              RelFornec();
+          })
+          .fail(function(error) {
+              console.log(error.responseText);
+          });
+            }else{
+
+                var cadastrar = {
+                    nome: $("#Nome").val(),
+                    cnpj: $("#CNPJ").val(),
+                    endereco: $("#Endereco").val(),
+                    tempo: $("#Tempo").val()
+                }
+                $.post('@Url.Action("Cadastrar", "Fornecedor")', cadastrar)
+
+                     .done(function(mensage) {
+                         alert("Cadastro Realizado")
+                         FormCadastroFornec();
+                     })
+                     .fail(function(error) {
+                         console.log(error.responseText);
+                     });
+            }
+        }
 
         function CriarCadastroProduto() {
             debugger;
@@ -537,6 +558,17 @@
         function AlterarCliente(id) {
             debugger;
             $.get('@Url.Action("GetDados", "Cliente")', {
+                id: id
+            }).done(function (mensage) {
+                $(".full_container").html(mensage);
+            }).fail(function (error) {
+                console.log(error.responseText);
+            });
+        };
+
+        function AlterarFornecedor(id) {
+            debugger;
+            $.get('@Url.Action("GetDados", "Fornecedor")', {
                 id: id
             }).done(function (mensage) {
                 $(".full_container").html(mensage);

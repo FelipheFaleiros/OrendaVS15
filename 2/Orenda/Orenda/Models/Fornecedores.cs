@@ -27,33 +27,6 @@ namespace Orenda.Models
                    @"Data Source=DESKTOP-3NC3AOG;Initial Catalog=Orenda;Integrated Security=SSPI;Persist Security Info=False;";
         private static SqlConnection myConnection = new SqlConnection(_conn);
 
-        public static bool Deletar(int id)
-        {
-            var sql = " delete from Fornecedores where cod_For = "+ id;
-            try
-            {
-                using (var minhaConnection = new SqlConnection(_conn))
-                {
-                    {
-                        minhaConnection.Open();
-                        using (var cmd = new SqlCommand(sql, minhaConnection))
-                        {
-                            using (var dr = cmd.ExecuteReader())
-                            {
-                                return true;
-                            }
-                        }
-                    }
-                }
-
-            }
-            catch (Exception)
-            {
-                myConnection.Close();
-                return (false);
-            }
-        }
-
         public bool Cadastrar()
         {
             var sql = " insert into Fornecedores (forNome, forCNPJ, forEndereco, forTempo) values(" +
@@ -109,6 +82,95 @@ namespace Orenda.Models
             }
 
             return ret;
+        }
+
+        public static bool Deletar(int id)
+        {
+            var sql = " delete from Fornecedores where cod_For = " + id;
+            try
+            {
+                using (var minhaConnection = new SqlConnection(_conn))
+                {
+                    {
+                        minhaConnection.Open();
+                        using (var cmd = new SqlCommand(sql, minhaConnection))
+                        {
+                            using (var dr = cmd.ExecuteReader())
+                            {
+                                return true;
+                            }
+                        }
+                    }
+                }
+
+            }
+            catch (Exception)
+            {
+                myConnection.Close();
+                return (false);
+            }
+        }
+
+        public static Fornecedores GetFornecedores(int id)
+        {
+            using (var minhaConnection = new SqlConnection(_conn))
+            {
+                minhaConnection.Open();
+                using (var cmd = new SqlCommand())
+                {
+                    cmd.Connection = minhaConnection;
+                    cmd.CommandText = string.Format($"select * from Fornecedores where cod_For = {id}");
+                    var reader = cmd.ExecuteReader();
+                    if (reader.Read())
+                    {
+                        return new Fornecedores
+                        {
+                            CodFornecedor = (int)reader["cod_For"],
+                            Nome = (string)reader["forNome"],
+                            CNPJ = (decimal)reader["forCNPJ"],
+                            Endereco = (string)reader["forEndereco"],
+                            Tempo = (TimeSpan)reader["forTempo"],
+                        };
+                    }
+                    else
+                    {
+                        return null;
+                    }
+                }
+            }
+        }
+
+
+        public bool Put()
+        {
+            var sql = "UPDATE Estoque " +
+                    $"SET forNome = '{this.Nome}', " +
+                    $"forCPNJ = {this.CNPJ}, " +
+                    $"forEndereco = {this.Endereco}, " +
+                    $"forEndereco = {this.Tempo} " +
+                    $"WHERE cod_For = {this.CodFornecedor}";
+            try
+            {
+                using (var minhaConnection = new SqlConnection(_conn))
+                {
+                    {
+                        minhaConnection.Open();
+                        using (var cmd = new SqlCommand(sql, minhaConnection))
+                        {
+                            using (var dr = cmd.ExecuteReader())
+                            {
+                                return true;
+                            }
+                        }
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                myConnection.Close();
+                return (false);
+            }
         }
     }
 }

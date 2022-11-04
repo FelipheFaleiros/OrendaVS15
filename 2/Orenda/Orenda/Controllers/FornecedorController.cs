@@ -32,5 +32,18 @@ namespace Orenda.Controllers
             Fornecedores.Deletar(id);
             return Content("TOP");
         }
+
+        [HttpGet]
+        public ActionResult GetDados (int id)
+        {
+            return View("Edicao", Fornecedores.GetFornecedores(id));
+        }
+
+        [HttpPost]
+        public ActionResult Put(Fornecedores cadastrar)
+        {
+            cadastrar.Put();
+            return Content("TOP");
+        }
     }
 }
