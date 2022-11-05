@@ -89,7 +89,6 @@
                                 <li><a >> <span>Media Galeria</span></a></li>
                             </ul>
                         </li>
-                        <li><a > <i class="fa fa-briefcase blue1_color"></i> <span>Serviços</span></a></li>
                         <li><a > <i class="fa fa-paper-plane red_color"></i> <span>Contatos</span></a></li>
                         <li class="active">
                             <a href="#additional_page" id="TLink1" aria-expanded="false" class="dropdown-toggle" onclick="toggle('additional', 'TLink1')"><i class="fa fa-clone yellow_color"></i> <span>Cadastros</span></a>
@@ -109,24 +108,7 @@
                             </ul>
                         </li>
                         <li><a ><i class="fa fa-map purple_color2"></i> <span>Mapa</span></a></li>
-                        <li><a ><i class="fa fa-bar-chart-o green_color"></i> <span>Graficos</span></a></li>
-                        <li class="active">
-                            <a class="dropdown-toggle" id="TLink1" onclick="toggle('settings', 'TLink1')" ><i class="fa fa-cog yellow_color"></i><span>Configurações</span></a>
-                            <ul style="display: none;" id="settings">
-                                <li>
-                                    <a >>Meu Perfil</a>
-                                </li>
-                                <li>
-                                    <a >>Settings</a>
-                                </li>
-                                <li>
-                                    <a >>Ajuda</a>
-                                </li>
-                                <li>
-                                    <a>>SAIR</a>
-                                </li>
-                            </ul>
-                        </li>
+                        <li><a ><i class="fa fa-bar-chart-o green_color"></i> <span>Graficos</span></a></li>            
                     </ul>
                 </div>
             </nav>
@@ -330,7 +312,7 @@
                 var cadastrar = {
                     codCliente:$("#CodCliente").val(),
                     nome: $("#Nome").val(),
-                    cpf: $("#CPF").val(),
+                    cpf: $("#CPF").val().replace('.', '').replace('.', '').replace('-', ''),
                     endereco: $("#Endereco").val(),
                     cidade: $("#Cidade").val(),
                     estado: $("#Estado").val(),
@@ -348,7 +330,7 @@
             } else {
                 var cadastrar = {
                     nome: $("#Nome").val(),
-                    cpf: $("#CPF").val(),
+                    cpf: $("#CPF").val().replace('.', '').replace('.', '').replace('-', ''),
                     endereco: $("#Endereco").val(),
                     cidade: $("#Cidade").val(),
                     estado: $("#Estado").val(),
@@ -594,6 +576,49 @@
             //v = v.replace(/(\d+)(\d{3},\d{2})$/g, "$1.$2") //Coloca o primeiro ponto
             return v;
         }
+
+        //Macara CPF
+        function mascaraCPF() {
+            var v = $("#CPF").val();
+
+            //Remove tudo o que não é dígito
+            v = v.replace(/\D/g, "")
+
+            //Coloca um ponto entre o terceiro e o quarto dígitos
+            v = v.replace(/(\d{3})(\d)/, "$1.$2")
+
+            //Coloca um ponto entre o terceiro e o quarto dígitos
+            //de novo (para o segundo bloco de números)
+            v = v.replace(/(\d{3})(\d)/, "$1.$2")
+
+            //Coloca um hífen entre o terceiro e o quarto dígitos
+            v = v.replace(/(\d{3})(\d{1,2})$/, "$1-$2")
+
+
+            $("#CPF").val(v);
+        }
+
+        //Macara CNPJ
+        function mascaraCNPJ() {
+            var v = $("#CNPJ").val();
+
+            v = v.replace(/\D/g, "")
+
+            //Coloca ponto entre o segundo e o terceiro dígitos
+            v = v.replace(/^(\d{2})(\d)/, "$1.$2")
+
+            //Coloca ponto entre o quinto e o sexto dígitos
+            v = v.replace(/^(\d{2})\.(\d{3})(\d)/, "$1.$2.$3")
+
+            //Coloca uma barra entre o oitavo e o nono dígitos
+            v = v.replace(/\.(\d{3})(\d)/, ".$1/$2")
+
+            //Coloca um hífen depois do bloco de quatro dígitos
+            v = v.replace(/(\d{4})(\d)/, "$1-$2")
+
+            $("#CNPJ").val(v);
+        }
+
 
     </script>
 </body>

@@ -20,6 +20,8 @@ namespace Orenda.Models
         public string Estado { get; set; }
         public string Situacao { get; set; }
 
+        public string CpfString => CPF.ToString().Split(',')[0];
+
         private readonly static string _conn =
             @"Data Source=DESKTOP-3NC3AOG;Initial Catalog=Orenda;Integrated Security=SSPI;Persist Security Info=False;";
         private static SqlConnection myConnection = new SqlConnection(_conn);

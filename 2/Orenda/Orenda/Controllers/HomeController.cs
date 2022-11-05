@@ -10,7 +10,15 @@ namespace Orenda.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            if (Session["Autorizado"] != null)
+            {
+                return View();
+            }
+            else
+            {
+                Response.Redirect("/Login/Index");
+                return null;
+            }
         }
 
         public ActionResult About()

@@ -10,38 +10,86 @@ namespace Orenda.Controllers
         [HttpGet]
         public ActionResult Cadastro()
         {
-            return View();
+            if (Session["Autorizado"] != null)
+            {
+                return View();
+            }
+            else
+            {
+                Response.Redirect("/Login/Index");
+                return null;
+            }
         }
 
         [HttpPost]
         public ActionResult Cadastrar(Estoques cadastrar)
         {
-            cadastrar.Cadastrar();
-            return Content("TOP");
+            if (Session["Autorizado"] != null)
+            {
+                cadastrar.Cadastrar();
+                return Content("TOP");
+            }
+            else
+            {
+                Response.Redirect("/Login/Index");
+                return null;
+            }
         }
 
         public ActionResult Relatorio()
         {
-            return View(Estoques.RecuperarList());
+            if (Session["Autorizado"] != null)
+            {
+                return View(Estoques.RecuperarList());
+            }
+            else
+            {
+                Response.Redirect("/Login/Index");
+                return null;
+            }
         }
 
         public ActionResult Deletar(int id)
         {
-            Estoques.Deletar(id);
-            return Content("TOP");
+            if (Session["Autorizado"] != null)
+            {
+                Estoques.Deletar(id);
+                return Content("TOP");
+            }
+            else
+            {
+                Response.Redirect("/Login/Index");
+                return null;
+            }
         }
 
         [HttpGet]
         public ActionResult GetDados(int id)
         {
-            return View("Edicao", Estoques.GetEstoques(id));
+            if (Session["Autorizado"] != null)
+            {
+                return View("Edicao", Estoques.GetEstoques(id));
+            }
+            else
+            {
+                Response.Redirect("/Login/Index");
+                return null;
+            }
         }
 
         [HttpPost]
         public ActionResult Put(Estoques cadastrar)
         {
-            cadastrar.Put();
-            return Content("TOP");
+            if (Session["Autorizado"] != null)
+            {
+                cadastrar.Put();
+                return Content("TOP");
+            }
+            else
+            {
+                Response.Redirect("/Login/Index");
+                return null;
+            }
         }
     }
 }

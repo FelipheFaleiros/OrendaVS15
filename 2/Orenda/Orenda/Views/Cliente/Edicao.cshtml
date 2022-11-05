@@ -36,7 +36,7 @@
                                         <div class="form-group">
                                             @Html.LabelFor(model => model.CPF, htmlAttributes: new { @class = "control-label col-md-2" })
                                             <div>
-                                                @Html.EditorFor(model => model.CPF, new { htmlAttributes = new { @class = "form-control", @placeholder = "XXX.XXX.XXX-XX", @type = "text", @maxlength = "14" } })
+                                                @Html.EditorFor(model => model.CpfString, new { htmlAttributes = new { @class = "form-control", @placeholder = "XXX.XXX.XXX-XX", @type = "text", @maxlength = "14", @id = "CPF", @onkeyup = "mascaraCPF()" } })
                                                 @Html.ValidationMessageFor(model => model.CPF, "", new { @class = "text-danger" })
                                             </div>
                                         </div>

@@ -12,38 +12,87 @@ namespace Orenda.Controllers
         [HttpGet]
         public ActionResult Cadastro()
         {
-            return View();
+            if (Session["Autorizado"] != null)
+            {
+                return View();
+            }
+            else
+            {
+                Response.Redirect("/Login/Index");
+                return null;
+            }
         }
 
         [HttpPost]
         public ActionResult Cadastrar(Fornecedores cadastrar)
         {
-            cadastrar.Cadastrar();
-            return Content("TOP");
+            if (Session["Autorizado"] != null)
+            {
+                cadastrar.Cadastrar();
+                return Content("TOP");
+            }
+            else
+            {
+                Response.Redirect("/Login/Index");
+                return null;
+            }
         }
 
         public ActionResult Relatorio()
         {
-            return View(Fornecedores.RecuperarList());
+            if (Session["Autorizado"] != null)
+            {
+                return View(Fornecedores.RecuperarList());
+            }
+            else
+            {
+                Response.Redirect("/Login/Index");
+                return null;
+            }
         }
         
         public ActionResult Deletar(int id)
         {
-            Fornecedores.Deletar(id);
-            return Content("TOP");
+            if (Session["Autorizado"] != null)
+            {
+                Fornecedores.Deletar(id);
+                return Content("TOP");
+            }
+            else
+            {
+                Response.Redirect("/Login/Index");
+                return null;
+            }
         }
 
         [HttpGet]
         public ActionResult GetDados (int id)
         {
-            return View("Edicao", Fornecedores.GetFornecedores(id));
+            if (Session["Autorizado"] != null)
+            {
+                return View("Edicao", Fornecedores.GetFornecedores(id));
+            }
+            else
+            {
+                Response.Redirect("/Login/Index");
+                return null;
+            }
         }
 
         [HttpPost]
         public ActionResult Put(Fornecedores cadastrar)
         {
-            cadastrar.Put();
-            return Content("TOP");
+            if (Session["Autorizado"] != null)
+            {
+                cadastrar.Put();
+                return Content("TOP");
+            }
+            else
+            {
+                Response.Redirect("/Login/Index");
+                return null;
+            }
         }
+
     }
 }
